@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Workshop Registration</title>
+    <style>
+        .mandatory::after {
+            content: " *";
+            color: red;
+        }
+
+        /* Style for top navigation bar */
+        .nav-bar {
+            background-color: #FFCC99;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .nav-bar span {
+            margin-right: 20px;
+        }
+
+        .nav-bar .down-arrow {
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Form container style */
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .form-column {
+            width: 45%;
+        }
+
+        .form-column input,
+        .form-column select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .form-column label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Style for the Register Now text */
+        .register-now {
+            font-size: 20px;
+            text-decoration: underline;
+            margin-top: 20px;
+        }
+
+        /* Style for the center-reset button */
+        .center-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .center-button input {
+            padding: 8px 20px;
+            margin: 10px 0;
+        }
+
+        /* Error style */
+        .error {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+
+        /* Show error message when input is invalid and touched */
+        input:invalid:focus + .error,
+        select:invalid:focus + .error {
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Top navigation bar -->
+    <div class="nav-bar">
+        <span>Workshop Registration</span>
+        <span>More Action <span class="down-arrow">↓</span></span>
+    </div>
+
+    <!-- Register now heading -->
+    <div class="register-now">
+        Register now while seats are available!
+    </div>
+
+    <!-- Form for Workshop Registration -->
+    <form th:action="@{/submit}" th:object="${employee}" method="post">
+        <div class="form-container">
+            <!-- Left Column -->
+            <div class="form-column">
+                <!-- First Name -->
+                <label for="firstName" class="mandatory">First Name</label>
+                <input type="text" th:field="*{firstName}" id="firstName" placeholder="Enter first name" required>
+                <span class="error">First Name is required!</span>
+
+                <!-- Last Name -->
+                <label for="lastName" class="mandatory">Last Name</label>
+                <input type="text" th:field="*{lastName}" id="lastName" placeholder="Enter last name" required>
+                <span class="error">Last Name is required!</span>
+
+                <!-- Company -->
+                <label for="company" class="mandatory">Company Institution</label>
+                <input type="text" th:field="*{company}" id="company" placeholder="Enter company name" required>
+                <span class="error">Company is required!</span>
+
+                <!-- Address -->
+                <label for="address" class="mandatory">Address</label>
+                <input type="text" th:field="*{address}" id="address" placeholder="Enter address" required>
+                <span class="error">Address is required!</span>
+
+                <!-- City -->
+                <label for="city" class="mandatory">City</label>
+                <input type="text" th:field="*{city}" id="city" placeholder="Enter city" required>
+                <span class="error">City is required!</span>
+
+                <!-- Email -->
+                <label for="email" class="mandatory">Email</label>
+                <input type="email" th:field="*{email}" id="email" placeholder="Enter email" required>
+                <span class="error">Email is required!</span>
+
+                <!-- Phone Number -->
+                <label for="phone" class="mandatory">Phone Number</label>
+                <input type="text" th:field="*{phone}" id="phone" placeholder="Enter phone number" required>
+                <span class="error">Phone number is required!</span>
+            </div>
+
+            <!-- Right Column-->
+            <div class="form-column">
+                <!-- State -->
+                <label for="state">State/Province/Region</label>
+                <select th:field="*{state}" id="state" required>
+                    <option value="State1">Ontario</option>
+                    <option value="State2">Alberta</option>
+                </select>
+                <span class="error">State is required!</span>
+
+                <!-- Country -->
+                <label for="country">Country</label>
+                <select th:field="*{country}" id="country" required>
+                    <option value="Country1">Canada</option>
+                    <option value="Country2">United States</option>
+                </select>
+                <span class="error">Country is required!</span>
+
+                <!-- Lunch -->
+                <label for="lunch">Lunch</label>
+                <select th:field="*{lunch}" id="lunch" required>
+                    <option value="Veg">Vegetarian</option>
+                    <option value="Non-Veg">Non-Vegetarian</option>
+                </select>
+                <span class="error">Lunch choice is required!</span>
+
+                <!-- Payment Mode -->
+                <label for="paymentMode">Payment Mode</label>
+                <input type="checkbox" th:field="*{modeOfPayment}" value="Credit Card" /> Credit Card
+                <input type="checkbox" th:field="*{modeOfPayment}" value="Debit Card" /> Debit Card
+                <input type="checkbox" th:field="*{modeOfPayment}" value="PayPal" /> PayPal
+                <span class="error">Payment Mode is required!</span>
+
+                <!-- Bank Name -->
+                <label for="bankName">Bank Name</label>
+                <input type="text" th:field="*{bankName}" id="bankName" placeholder="Enter bank name">
+                <span class="error">Bank name is required!</span>
+
+                <!-- Pay Amount -->
+                <label for="pay">Pay Amount</label>
+                <input type="number" th:field="*{pay}" id="pay" placeholder="Enter pay amount">
+                <span class="error">Pay amount is required!</span>
+            </div>
+        </div>
+
+        <!-- Centered Reset Button -->
+        <div class="center-button">
+            <input type="reset" value="Reset">
+        </div>
+
+        <!-- Submit Button -->
+        <div class="center-button">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+</body>
+
+</html>
